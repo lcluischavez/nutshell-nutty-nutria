@@ -2,6 +2,6 @@ let friends = []
 
 export const useFriends = () => friends.slice()
 
-export const getFriends = () => fetch("http://localhost:8088/friends")
+export const getFriends = () => fetch("http://localhost:3000/friends")
     .then(res => res.json())
     .then(parsedFriends => friends = parsedFriends)
