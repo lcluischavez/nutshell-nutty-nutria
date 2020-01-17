@@ -1,10 +1,12 @@
-// import { useUsers, getusers } from loginProvider.js
+import { getUsers, useUsers } from "./loginProvider.js"
 
-// let appStateUsers = useUsers()
+let updateUsers = getUsers
 
-//let updateUsers = getusers()
 
-// console.log(appStateUsers)
+
+let appStateUsers = useUsers()
+
+updateUsers().then((console.log(appStateUsers.find(x => x.username === 'bigDaddyOG_37'))))
 
 export const loginFunction = () => {
 
@@ -18,7 +20,7 @@ const check = (form) => {
  //Checks if the entered username and password match
  if(username.value == "username" && password.value == "password")
   {
-    sessionStorage.setItem(username.value, 'testValue');
+    sessionStorage.setItem(username.value, 'testValue1');
     //If the username and password matches, render the main app and store the value of the username field in session storage
   }
  else
