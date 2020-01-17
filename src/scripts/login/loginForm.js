@@ -1,9 +1,10 @@
-const bodyElement = document.getElementById(body)
+const bodyElement = document.getElementById(loginDiv);
 
 
+export const loginForm = () => {
 
-const loginForm = () => {
-    return `                
+
+    return bodyElement.innerHTML= `                
     <div class="loginPage">
 
     <h1>Nutshell Login Page</h1>
