@@ -16,7 +16,5 @@ getUsers()
     .then(ArticleList)
     .then(getTasks)
     .then(TaskList)
+    .then(getMessages)
     .then(messageListComponent)
-
-
-

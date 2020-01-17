@@ -1,12 +1,11 @@
-const messagesComponant = (messages, users) => {
+const messagesComponent = (messages, users) => {
     return `
         <section class="message">
             <div>
                 <h3> ${messages.message} </h3>
-                <h3> ${users.firstName} </h3>
             </div>
         </section>
     `
 }
 
-export default messagesComponant
+export default messagesComponent
