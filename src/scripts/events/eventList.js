@@ -11,10 +11,10 @@ export const EventList = () => {
 
     const render = () => {
         contentTarget.innerHTML = events.map(event => {
-            // Find this product's type
+            
             const user = users.filter(user => user.id === event.userId)
 
-            // Get HTML representation of product
+            
             const html = Event(event, user)
 
             return html
