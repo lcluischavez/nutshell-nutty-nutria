@@ -1,10 +1,11 @@
-const eventComponenet = (flower) =>{
+
+export const eventComponent = (event) => {
     return `
-      <section class="eventCard">
-      <h2 class="flowerName">${event.commonName}</h2>
-      <p class="flowerColor">${flower.color}</p>
-      </section>
-    `
+    <div class="eventCard">
+    <h4 class="eventName">${event.name}</h4>
+    <p class="eventId">${event.id}</p>
+    <p class="eventDate">${event.date}</p>
+    <button id="editevent--${event.id}">Edit</button>
+    <button id="deleteEvent--${event.id}">Delete</button>
+    </div>`
   }
-  
-  export default flowerComponent
