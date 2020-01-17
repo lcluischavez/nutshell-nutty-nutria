@@ -1,18 +1,21 @@
 import { useEvents } from "./eventDataProvider.js"
 import { useUsers } from "../users/userProvider.js"
-import eventComponent from "./event.js"
+import Event from "./event.js"
+
 
 const contentTarget = document.querySelector(".events")
 
-export const eventListComponent = () => {
-    const messages = useEvents()
+export const EventList = () => {
+    const events = useEvents()
     const users = useUsers()
 
     const render = () => {
         contentTarget.innerHTML = events.map(event => {
+            // Find this product's type
             const user = users.filter(user => user.id === event.userId)
 
-            const html = eventComponent(event, user)
+            // Get HTML representation of product
+            const html = Event(event, user)
 
             return html
         }).join("")
@@ -21,4 +24,4 @@ export const eventListComponent = () => {
     render()
 }
 
-export default eventListComponent
+export default EventList
