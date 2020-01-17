@@ -5,6 +5,11 @@ const Article = (article, user) => {
             <a href="${article.url}" target=”_blank”>${article.url}</a>
             <div>${article.synopsis}</div>
         </section>
+        <br>
+        <div>
+            <input type="button" id="deleteArticle" value="Delete"/>
+            <input type="button" id="editArticle" value="Edit"/>
+        </div>
     `
 }
 

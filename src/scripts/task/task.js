@@ -4,6 +4,7 @@ const Task = (task, user) => {
             <h3>${task.name}</h3>
             <div>${task.task}</div>
         </section>
+        <br>
         <div>
             <input type="button" id="deleteTask" value="Delete"/>
             <input type="button" id="editTask" value="Edit"/>
