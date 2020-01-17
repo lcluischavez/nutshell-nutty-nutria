@@ -11,10 +11,10 @@ export const EventList = () => {
 
     const render = () => {
         contentTarget.innerHTML = events.map(event => {
-            
+
             const user = users.filter(user => user.id === event.userId)
 
-            
+
             const html = Event(event, user)
 
             return html
