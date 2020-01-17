@@ -1,16 +1,3 @@
-<<<<<<< HEAD
-const eventComponent = (events, users) => {
-    return `
-        <section class="event">
-            <div>
-                <h3> ${events.name} </h3>
-            </div>
-        </section>
-    `
-}
-
-export default eventComponent
-=======
 const Event = (event, user) => {
   return `
       <section class="event">
@@ -25,4 +12,3 @@ const Event = (event, user) => {
   `
 }
 export default Event
->>>>>>> master
