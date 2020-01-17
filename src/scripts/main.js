@@ -1,15 +1,21 @@
-import { getMessages } from "./message/messageDataProvider.js";
+//import { getMessages } from "./message/messageDataProvider.js";
 import { getTasks } from "./task/taskDataProvider.js";
-import { getFriends } from "./friends/friendDataProvider.js";
-import { getEvents, useEvents } from "./events/eventDataProvider.js";
+import { getUsers } from "./users/userProvider.js";
+//import MessageList from "./message/messageList.js";
+import TaskList from "./task/taskList.js";
+// import { getFriends } from "./friends/friendDataProvider";
+// import { getEvents } from "./events/eventDataProvider";
 import { getArticles } from "./articles/articleDataProvider.js";
-import eventListComponent from "./events/eventList.js";
+import ArticleList from "./articles/articleList.js";
 
 
-getEvents(eventListComponent)
-// eventListComponent()
-useEvents()
-getMessages()
-getTasks()
-getFriends()
-getArticles()
+ArticleList
+
+getUsers()
+    .then(getArticles)
+    .then(ArticleList)
+    .then(getTasks)
+    .then(TaskList)
+
+
+
