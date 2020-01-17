@@ -8,10 +8,11 @@ import { getEvents } from "./events/eventDataProvider.js";
 import { getArticles } from "./articles/articleDataProvider.js";
 import ArticleList from "./articles/articleList.js";
 import EventList from "./events/eventList.js";
+import loginList from "./login/loginList.js";
+import { loginFunction } from "./login/loginFunction.js";
 
 loginList()
 loginFunction()
-
 
 getUsers()
     .then(getArticles)
