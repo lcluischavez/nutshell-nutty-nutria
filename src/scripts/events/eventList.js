@@ -1,29 +1,28 @@
-import { eventComponent } from "../events/event.js";
-import { useEvents, getEvents } from "../events/eventDataProvider.js";
+import{useEvents} from"../events/eventDataProvider.js"
+import{useUsers} from"../users/userProvider.js"
 
-export const eventListComponenet = () => {
-    const events = useEvents()
-    const Users = useUsers()
+const  contentTarget = document.querySelector(".events")
 
-
-
+export const eventList = () => {
+    const allEvents = useEvents()
+    const allUsers = useUsers()
+   
     const render = () => {
-        contentTarget.innerHTML = users.map(user => {
-            const event = events.find(event => users === user.eventId === event.id)
-        }
+        contentTarget.innerHTML = allUsers.map(user => {
+            
+            const event = allEvents.find(type => type.id === event.eventId)
+           
+            const html = users(user, event)
 
+            return html
+        }).join("")
+    }
 
-
-
-
-    const html = eventComponent (users, event)
-        return html
-    }).join("")
-}
-render()
+    render()
 }
 
-export default eventListComponenet
+export default eventList
+
 
 
 
