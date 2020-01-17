@@ -1,9 +1,9 @@
-const messagesComponant = (messages) => {
+const messagesComponant = (messages, users) => {
     return `
         <section class="message">
-            <header>Messages</header>
             <div>
-                <h3> username ${messages.message} </h3>
+                <h3> ${messages.text} </h3>
+                <h3> ${users.firstName} </h3>
             </div>
         </section>
     `

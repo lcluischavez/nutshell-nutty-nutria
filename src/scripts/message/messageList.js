@@ -1,11 +1,29 @@
 import { useMessages } from "./messageDataProvider.js"
-import messagesComponent from "./message.js"
+import { useUsers } from "../users/userProvider.js"
+import messagesComponant from "./message.js"
 
-const contentTarget = document.querySelector(".container")
 
-const messageListComponent = () => {
 
-export default messageListComponent
+const contentTarget = document.querySelector(".messages")
+
+export const messageListomponant = () => {
+    const messages = useMessages()
+    const users = useUsers()
+
+    const render = () => {
+        contentTarget.innerHTML = users.map(user => {
+            const message = users.filter(user => user.id === user.userId)
+
+            const html = messagesComponant(message, user)
+
+            return html
+        }).join("")
+    }
+
+    render()
+}
+
+export default messageListomponant
 
 
 
