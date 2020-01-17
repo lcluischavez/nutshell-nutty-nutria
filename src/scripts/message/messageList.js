@@ -2,8 +2,6 @@ import { useMessages } from "./messageDataProvider.js"
 import { useUsers } from "../users/userProvider.js"
 import messagesComponant from "./message.js"
 
-
-
 const contentTarget = document.querySelector(".messages")
 
 export const messageListomponant = () => {
