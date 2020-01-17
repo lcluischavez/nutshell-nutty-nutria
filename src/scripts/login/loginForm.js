@@ -1,11 +1,11 @@
-const bodyElement = document.getElementById(loginDiv);
+const loginTarget = document.getElementById(loginDiv);
 
 
 export const loginForm = () => {
 
-
-    return bodyElement.innerHTML= `                
-    <div class="loginPage">
+    return loginTarget.innerHTML=
+                    
+    `<div class="loginPage">
 
     <h1>Nutshell Login Page</h1>
 
