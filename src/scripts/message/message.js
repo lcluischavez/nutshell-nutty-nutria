@@ -7,7 +7,6 @@ const messagesComponent = (messages, users) => {
             <div>
                 <button id="messageDelete--${messages.id}">Delete</button>
                 <button id="messageEdit--${messages.id}">Edit</button>
-                <button id="messageSave--${messages.id}">Save</button>
             </div>
         </section>
     `
