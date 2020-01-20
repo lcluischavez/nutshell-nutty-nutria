@@ -16,12 +16,11 @@ const eventFormComponent = () => {
             }
         )
 
-        document.querySelector("#event-id").value = event.id
-        document.querySelector("#event-name").value = event.name
-        document.querySelector("#event-Date").value = event.Date
-        document.querySelector("#event-location").value = event.location
+        document.querySelector("#event-id").value = theFoundedEvent.id
+        document.querySelector("#event-name").value = theFoundedEvent.name
+        document.querySelector("#event-Date").value = theFoundedEvent.Date
+        document.querySelector("#event-location").value = theFoundedEvent.location
     })
-
 
     eventHub.addEventListener("click", clickEvent => {
         if (clickEvent.target.id === "saveEvent") {
@@ -33,7 +32,7 @@ const eventFormComponent = () => {
                     id: parseInt(document.querySelector("#event-id").value, 10),
                     name: document.querySelector("#event-name").value,
                     location: document.querySelector("#event-location").value,
-                    Date: document.querySelector("#event-Date").value = event.Date
+                    Date: document.querySelector("#event-Date").value
                 }
 
                 editEvent(editedEvent).then(() => {
@@ -45,7 +44,7 @@ const eventFormComponent = () => {
                     id: document.querySelector("#event-id").value,
                     name: document.querySelector("#event-name").value,
                     location: document.querySelector("#event-location").value,
-                    Date: document.querySelector("#event-Date").value = event.Date
+                    Date: document.querySelector("#event-Date").value
                 }
 
                 saveEvents(newEvent).then(
@@ -77,7 +76,7 @@ const eventFormComponent = () => {
                     Text: <input type="location" id="event-location" />
                 </div>
                 <div class="event__field">
-                    Date: <input type="Date" id="event-Date" />
+                    Date: <input type="dateTime-local" id="event-Date" />
                 </div>
                 <button class="event__field" id="saveEvent">Save Event</button>
                 <button class="event__field" id="showEvents">show Event</button>
