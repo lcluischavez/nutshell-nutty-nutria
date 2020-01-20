@@ -10,16 +10,54 @@ import ArticleList from "./articles/articleList.js";
 import EventList from "./events/eventList.js";
 import loginList from "./login/loginList.js";
 import { loginFunction } from "./login/loginFunction.js";
+import { getLoginUsers } from "./login/loginProvider.js"
+// import { loginPromise } from "./login/loginPromise.js"
 
-loginList()
-loginFunction()
+const button = document.getElementById("submitLogin");
 
+
+
+// getLoginUsers()
+
+// getLoginUsers()
 getUsers()
+    .then(loginList)
+    .then(loginFunction)
     .then(getArticles)
-    .then(ArticleList)
     .then(getTasks)
-    .then(TaskList)
     .then(getEvents)
+    .then(ArticleList)
+    .then(TaskList)
     .then(EventList)
+
+
+
+
+
+
+
+// loginList()
+
+// loginPromise()
+
+
+
+
+
+
+
+// getLoginUsers()
+//     .then(loginList)
+//     .then(loginFunction)
+//     .then(getUsers)
+//     .then(getArticles)
+//     .then(ArticleList)
+//     .then(getTasks)
+//     .then(TaskList)
+//     .then(getEvents)
+//     .then(EventList)
+
+
+
 
 

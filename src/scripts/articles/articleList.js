@@ -10,6 +10,8 @@ export const ArticleList = () => {
     const articles = useArticles()
     const users = useUsers()
 
+    console.log(users)
+
     const render = () => {
         contentTarget.innerHTML = articles.map(article => {
             // Find this product's type

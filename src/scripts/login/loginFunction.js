@@ -1,33 +1,52 @@
-import { getUsers, useUsers } from "./loginProvider.js"
+// import { useUsers, getUsers } from "../users/userProvider.js"
 
-let updateUsers = getUsers
+// let updateUsers = getUsers()
+// let appStateUsers = useUsers()
 
 
+// console.log(appStateUsers)
 
-let appStateUsers = useUsers()
+import { useUsers } from "../users/userProvider.js"
 
-updateUsers().then((console.log(appStateUsers.find(x => x.username === 'bigDaddyOG_37'))))
 
 export const loginFunction = () => {
+let appStateUsers = useUsers()
 
-const submitButton = document.getElementById("submitLogin")
-const username = document.getElementById("username")
-const password = document.getElementById("password")
+console.log(appStateUsers)
 
-//Function to check the username and password
+  const submitButton = document.getElementById("submitLogin")
+  const username = document.getElementById("username")
+  const password = document.getElementById("password")
+  const main = document.querySelector('main')  
+  //Function to check the username and password
+  
+  const check = (key) => {
 
-const check = (form) => {
- //Checks if the entered username and password match
- if(username.value == "username" && password.value == "password")
-  {
-    sessionStorage.setItem(username.value, 'testValue1');
-    //If the username and password matches, render the main app and store the value of the username field in session storage
+  let foundObject = key.find(userNameKey => userNameKey.username == username.value);
+  let foundValues = Object.values(foundObject)
+   //Checks if the entered username and password match
+   if(foundValues.find(currentValue => currentValue == username.value) == username.value && password.value == "password")
+    {
+      sessionStorage.setItem(username.value, 'testValue');
+      console.log('User logged in')
+      const show = (element) => {
+        element.style.display = 'flex';
+      };
+      show(main)
+      //If the username and password matches, render the main app and store the value of the username field in session storage
+    }
+   else
+   {
+     alert("Error: Incorrect Password or Username") //Popup error message
+    }
   }
- else
- {
-   alert("Error: Incorrect Password or Username") //Popup error message
+  
+  submitButton.onclick = () => {
+    let database = appStateUsers.filter(database => database.username === username.value)
+    // if (database = undefined) {
+    //   alert("Error: Incorrect Password or Username");
+    // }    
+    let key = Object.values(database)
+    
+    check(key)}
   }
-}
-
-submitButton.onclick = () => {check()}
-}
