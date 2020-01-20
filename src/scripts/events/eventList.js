@@ -28,7 +28,7 @@ const eventListComponent = () => {
 
             deleteEvent(eventId).then(
                 () => {
-                    const theNewEvents = useEvent()
+                    const theNewEvents = useEvents()
                     render(theNewEvents)
                 }
             )
