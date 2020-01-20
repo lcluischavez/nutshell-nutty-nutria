@@ -1,6 +1,6 @@
 //import { getMessages } from "./message/messageDataProvider.js";
 import { getTasks } from "./task/taskDataProvider.js";
-import { getUsers } from "./users/userProvider.js";
+import { getUsers, getCurrentUser } from "./users/userProvider.js";
 //import MessageList from "./message/messageList.js";
 import TaskList from "./task/taskList.js";
 // import { getFriends } from "./friends/friendDataProvider";
@@ -11,21 +11,18 @@ import EventList from "./events/eventList.js";
 import loginList from "./login/loginList.js";
 import { loginFunction } from "./login/loginFunction.js";
 import { getLoginUsers } from "./login/loginProvider.js"
-// import { loginPromise } from "./login/loginPromise.js"
 
-const button = document.getElementById("submitLogin");
+let welcome = () = {
+    getArticles()
+    getTasks()
+    getEvents()
+}
 
-
-
-// getLoginUsers()
-
-// getLoginUsers()
 getUsers()
     .then(loginList)
     .then(loginFunction)
-    .then(getArticles)
-    .then(getTasks)
-    .then(getEvents)
+getCurrentUser()
+    .then(welcome)
     .then(ArticleList)
     .then(TaskList)
     .then(EventList)
@@ -36,28 +33,24 @@ getUsers()
 
 
 
-// loginList()
-
-// loginPromise()
 
 
 
 
 
 
+const welcome = () = {
 
-// getLoginUsers()
-//     .then(loginList)
-//     .then(loginFunction)
-//     .then(getUsers)
-//     .then(getArticles)
-//     .then(ArticleList)
-//     .then(getTasks)
-//     .then(TaskList)
-//     .then(getEvents)
-//     .then(EventList)
+}
 
-
-
-
-
+getUsers()
+    .then(loginList)
+    .then(loginFunction)
+const currentVal = getCurrentUser()
+getArticles(currentVal)
+    .then(ArticleList)
+getTasks()
+    .then(TaskList)
+getEvents()
+    .then(EventList)
+// welcome()
