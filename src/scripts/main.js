@@ -8,7 +8,9 @@
 import { getMessages } from "./message/messageDataProvider.js"
 import MessageFormComponent from "./message/messageForm.js"
 import MessageListComponent from "./message/messageList.js"
-
+import { getEvents } from "./events/eventProvider.js";
+import eventFormComponent from "./events/eventForm.js";
+import EventList from "./events/eventList.js";
 //import loginList from "./login/loginList.js";
 //import { loginFunction } from "./login/loginFunction.js";
 
@@ -29,3 +31,7 @@ import MessageListComponent from "./message/messageList.js"
    getMessages()
       .then(MessageFormComponent)
       .then(MessageListComponent)
+
+   getEvents()
+      .then(eventFormComponent)
+      .then(EventList)
