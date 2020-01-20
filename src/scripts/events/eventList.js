@@ -74,32 +74,3 @@ const eventListComponent = () => {
 }
 
 export default eventListComponent
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

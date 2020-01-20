@@ -2,8 +2,6 @@ import { useArticles } from "./articleDataProvider.js"
 import { useUsers } from "../users/userProvider.js"
 import Article from "./article.js"
 
-
-
 const contentTarget = document.querySelector(".articles")
 
 export const ArticleList = () => {
