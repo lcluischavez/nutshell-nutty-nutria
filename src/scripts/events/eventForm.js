@@ -1,4 +1,4 @@
-import { saveEvent, useEvents, getEvents, editEvent } from "./eventProvider.js"
+import { saveEvents, useEvents, editEvent } from "./eventProvider.js"
 
 const eventHub = document.querySelector(".container")
 const contentTarget = document.querySelector(".eventFormContainer")
@@ -20,7 +20,6 @@ const eventFormComponent = () => {
         document.querySelector("#event-name").value = theFoundedEvent.name
         document.querySelector("#event-date").value = theFoundedevent.date
         document.querySelector("#event-location").value = theFoundedevent.location
-        document.querySelector("#event-userId").value = theFoundedevent.userId
     })
 
 
@@ -34,7 +33,6 @@ const eventFormComponent = () => {
                     id: parseInt(document.querySelector("#event-id").value, 10),
                     name: document.querySelector("#event-name").value,
                     location: document.querySelector("#event-location").value,
-                    userId: document.querySelector("#event-userId").value,
                     Date: Date.now()
                 }
 
@@ -47,11 +45,10 @@ const eventFormComponent = () => {
                     id: document.querySelector("#event-id").value,
                     name: document.querySelector("#event-name").value,
                     location: document.querySelector("#event-location").value,
-                    userId: document.querySelector("#event-userId").value,
                     Date: Date.now()
                 }
 
-                saveEvent(newEvent).then(
+                saveEvents(newEvent).then(
                     () => {
                         const message = new CustomEvent("eventCreated")
                         eventHub.dispatchEvent(message)
@@ -61,12 +58,12 @@ const eventFormComponent = () => {
         }
     })
 
-    // eventHub.addEventListener("click", clickEvent => {
-    //     if (clickEvent.target.id === "showEvents") {
-    //         const message = new CustomEvent("showEventButtonClicked")
-    //         eventHub.dispatchEvent(message)
-    //     }
-    // })
+    eventHub.addEventListener("click", clickEvent => {
+        if (clickEvent.target.id === "showEvents") {
+            const message = new CustomEvent("showEventButtonClicked")
+            eventHub.dispatchEvent(message)
+        }
+    })
 
     const render = () => {
         contentTarget.innerHTML = `
@@ -80,6 +77,7 @@ const eventFormComponent = () => {
                     Text: <input type="location" id="event-location" />
                 </div>
                 <button class="event__field" id="saveEvent">Save Event</button>
+                <button class="event__field" id="showEvents">show Event</button>
             </details>
         `
     }
