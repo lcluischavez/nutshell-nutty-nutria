@@ -75,9 +75,9 @@ console.log(clickEvent.target);
                     Title: <input type="text" id="message-title" />
                 </div>
                 <div class="message__field">
-                    Text: <input type="text" id="message-text" />
+                    Message: <input type="text" id="message-text" />
                 </div>
-                <button class="message__field" id="saveMessage">Save Message</button>
+                <button class="message__field" id="saveMessage">Send Message</button>
             </details>
         `
     }
