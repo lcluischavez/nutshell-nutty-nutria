@@ -59,12 +59,12 @@ console.log(clickEvent.target);
         }
     })
 
-    // eventHub.addEventListener("click", clickEvent => {
-    //     if (clickEvent.target.id === "showMessages") {
-    //         const message = new CustomEvent("showMessageButtonClicked")
-    //         eventHub.dispatchEvent(message)
-    //     }
-    // })
+    eventHub.addEventListener("click", clickEvent => {
+        if (clickEvent.target.id === "showMessages") {
+            const message = new CustomEvent("showMessageButtonClicked")
+            eventHub.dispatchEvent(message)
+        }
+    })
 
     const render = () => {
         contentTarget.innerHTML = `
@@ -78,6 +78,7 @@ console.log(clickEvent.target);
                     Message: <input type="text" id="message-text" />
                 </div>
                 <button class="message__field" id="saveMessage">Send Message</button>
+                <button class="message__field" id="showMessage">Show Message</button>
             </details>
         `
     }

@@ -61,7 +61,6 @@ const MessageListComponent = () => {
                             ${new Date(individualMessage.exCompDate).toLocaleDateString("us-en")}
                             ${new Date(individualMessage.exCompDate).toLocaleTimeString("us-en")}
                         </div>
-                        <button id="deleteMessage--${individualMessage.id}">Delete</button>
                         <button id="editMessage--${individualMessage.id}">Edit</button>
                         <br>
                         <br>
