@@ -10,10 +10,10 @@ export const ArticleList = () => {
 
     const render = () => {
         contentTarget.innerHTML = articles.map(article => {
-            // Find this product's type
+            
             const user = users.filter(user => user.id === article.userId)
 
-            // Get HTML representation of product
+
             const html = Article(article, user)
 
             return html

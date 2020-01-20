@@ -3,7 +3,7 @@ import { getFriends, useFriends, deleteFriend } from "./friendDataProvider.js"
 const contentTarget = document.querySelector(".messageContainer")
 const eventHub = document.querySelector(".container")
 
-const MessageListComponent = () => {
+const FriendListComponent = () => {
 
     eventHub.addEventListener("messageHasBeenEdited", event => {
         const updatedMessages = useMessages()
