@@ -1,68 +1,68 @@
 import { getFriends, useFriends, deleteFriend } from "./friendDataProvider.js"
 
-const contentTarget = document.querySelector(".messageContainer")
+const contentTarget = document.querySelector(".friendContainer")
 const eventHub = document.querySelector(".container")
 
 const FriendListComponent = () => {
-
-    eventHub.addEventListener("messageHasBeenEdited", event => {
-        const updatedMessages = useMessages()
-        render(updatedMessages)
+ 
+    eventHub.addEventListener("friendHasBeenEdited", event => {
+        const updatedFriends = useFriends()
+        render(updatedFriends)
     })
 
     eventHub.addEventListener("click", clickEvent => {
-        if (clickEvent.target.id.startsWith("editMessage--")) {
-            const [deletePrefix, messageId] = clickEvent.target.id.split("--")
+        if (clickEvent.target.id.startsWith("editFriend--")) {
+            const [deletePrefix, friendId] = clickEvent.target.id.split("--")
 
-            const editEvent = new CustomEvent("editButtonClicked", {
+            const editEvent = new CustomEvent("editFriendButtonClicked", {
                 detail: {
-                    messageId: messageId
+                    friendId: friendId
                 }
             })
 
             eventHub.dispatchEvent(editEvent)
         }
 
-        if (clickEvent.target.id.startsWith("deleteMessage--")) {
-            const [deletePrefix, messageId] = clickEvent.target.id.split("--")
+        if (clickEvent.target.id.startsWith("deleteFriend--")) {
+            const [deletePrefix, friendId] = clickEvent.target.id.split("--")
 
-            deleteMessage(messageId).then(
+            deleteFriend(friendId).then(
                 () => {
-                   const theNewMessages = useMessages()
-                    render(theNewMessage)
+                   const theNewFriend = useFriends()
+                    render(theNewFriend)
                 }
             )
         }
     })
 
-    const renderMessagesAgain = () => {
-        const allTheMessages = useMessages()
-        render(allTheMessages)
+    const renderFriendsAgain = () => {
+        const allTheFriends = useFriends()
+        render(allTheFriends)
 
     }
 
-    eventHub.addEventListener("messageCreated", event => {
-        renderMessagesAgain()
+    eventHub.addEventListener("friendCreated", event => {
+        renderFriendsAgain()
     })
 
-    eventHub.addEventListener("showMessageButtonClicked", event => {
-        renderMessagesAgain()
+    eventHub.addEventListener("showFriendButtonClicked", event => {
+        renderFriendsAgain()
     })
 
-    const render = (messagesCollection) => {
-        contentTarget.innerHTML = messagesCollection.map(
-            (individualMessage) => {
+    const render = (friendsCollection) => {
+        contentTarget.innerHTML = friendsCollection.map(
+            (individualFriend) => {
                 return `
-                    <section class="message">
-                        <div>${individualMessage.title}</div>
+                    <section class="friend">
+                        <div>${individualFriend.title}</div>
                         <br>
-                        <div>${individualMessage.text}</div>
+                        <div>${individualFriend.text}</div>
                         <div>
-                            ${new Date(individualMessage.exCompDate).toLocaleDateString("us-en")}
-                            ${new Date(individualMessage.exCompDate).toLocaleTimeString("us-en")}
+                            ${new Date(individualFriend.exCompDate).toLocaleDateString("us-en")}
+                            ${new Date(individualFriend.exCompDate).toLocaleTimeString("us-en")}
                         </div>
-                        <button id="deleteMessage--${individualMessage.id}">Delete</button>
-                        <button id="editMessage--${individualMessage.id}">Edit</button>
+                        <button id="deleteMessage--${individualFriend.id}">Delete</button>
+                        <button id="editMessage--${individualFriend.id}">Edit</button>
                         <br>
                         <br>
                     </section>
@@ -73,4 +73,4 @@ const FriendListComponent = () => {
 
 }
 
-export default MessageListComponent
+export default FriendListComponent

@@ -1,24 +1,25 @@
-import { saveMessage, getMessages, useMessages, editMessage } from "./messageDataProvider.js"
+import { saveFriends, getFriends, useFriends, editFriend } from "./friendDataProvider.js"
 
 const eventHub = document.querySelector(".container")
-const contentTarget = document.querySelector(".messageFormContainer")
+const contentTarget = document.querySelector(".friendFormContainer")
 
 
-const MessageFormComponent = () => {
+const FriendFormComponent = () => {
 
-    eventHub.addEventListener("editMessageButtonClicked", event => {
-        const messageToBeEdited = event.detail.messageId
+    eventHub.addEventListener("editFriendsButtonClicked", event => {
+        const friendToBeEdited = event.detail.friendId
 
-        const allMessagesArray = useMessages()
+        const allFriendsArray = useFriends()
 
-        const theFoundedMessage = allMessagesArray.find(
-            (currentMessageObject) => {
-                return currentMessageObject.id === parseInt(messageToBeEdited, 10)
+        const theFoundedFriend = allFriendsArray.find(
+            (currentFriendObject) => {
+                return currentFriendObject.id === parseInt(friendToBeEdited, 10)
             }
         )
 
-        document.querySelector("#message-id").value = theFoundedMessage.id
-        document.querySelector("#message-messages").value = theFoundedMessage.messages
+        document.querySelector("#friend-id").value = theFoundedFriend.id
+        document.querySelector("#friend-text").value = theFoundedFriend.text
+        document.querySelector("#friend-title").value = theFoundedFriend.title
     })
 
     // Handle internal element click
@@ -32,7 +33,9 @@ console.log(clickEvent.target);
             if (hiddenInputValue !== "") {
                 const editedMessage = {
                     id: parseInt(document.querySelector("#message-id").value, 10),
-                    messages: document.querySelector("#message-messages").value,
+                    text: document.querySelector("#message-text").value,
+                    title: document.querySelector("#message-title").value,
+                    exCompDate: Date.now()
                 }
 
                 editMessage(editedMessage).then(() => {
@@ -41,7 +44,9 @@ console.log(clickEvent.target);
             } else {
                 // Else, save the notes with a POST operation
                 const newMessage = {
-                    messages: document.querySelector("#message-messages").value,
+                    text: document.querySelector("#message-text").value,
+                    title: document.querySelector("#message-title").value,
+                    exCompDate: Date.now()
                 }
 
                 saveMessage(newMessage).then(
@@ -67,7 +72,10 @@ console.log(clickEvent.target);
                 <summary>Messages</summary>
                 <input type="hidden" id="message-id" />
                 <div class="message__field">
-                    Message: <input type="text" id="message-messages" />
+                    Title: <input type="text" id="message-title" />
+                </div>
+                <div class="message__field">
+                    Message: <input type="text" id="message-text" />
                 </div>
                 <button class="message__field" id="saveMessage">Send Message</button>
                 <button class="message__field" id="showMessage">Show Message</button>

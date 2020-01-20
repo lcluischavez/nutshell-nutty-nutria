@@ -54,13 +54,8 @@ const MessageListComponent = () => {
             (individualMessage) => {
                 return `
                     <section class="message">
-                        <div>${individualMessage.title}</div>
                         <br>
-                        <div>${individualMessage.text}</div>
-                        <div>
-                            ${new Date(individualMessage.exCompDate).toLocaleDateString("us-en")}
-                            ${new Date(individualMessage.exCompDate).toLocaleTimeString("us-en")}
-                        </div>
+                        <div>${individualMessage.messages}</div>
                         <button id="editMessage--${individualMessage.id}">Edit</button>
                         <br>
                         <br>
