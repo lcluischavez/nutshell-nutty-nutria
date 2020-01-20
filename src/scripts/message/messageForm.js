@@ -1,9 +1,10 @@
-import { saveMessages, getMessages, useMessages, editMessages } from "./messageDataProvider.js"
+import { saveMessage, getMessages, useMessages, editMessage } from "./messageDataProvider.js"
 
 const eventHub = document.querySelector(".container")
-const contentTarget = document.querySelector(".messageContainer")
+const contentTarget = document.querySelector(".messageFormContainer")
 
-const messageForm = () => {
+
+const MessageFormComponent = () => {
 
     eventHub.addEventListener("editButtonClicked", event => {
         const messageToBeEdited = event.detail.messageId
@@ -18,10 +19,12 @@ const messageForm = () => {
 
         document.querySelector("#message-id").value = theFoundedMessage.id
         document.querySelector("#message-text").value = theFoundedMessage.text
+        document.querySelector("#message-title").value = theFoundedMessage.suspect
     })
 
     // Handle internal element click
     eventHub.addEventListener("click", clickEvent => {
+console.log(clickEvent.target);
         if (clickEvent.target.id === "saveMessage") {
             // Does the hidden input field have a value?
             const hiddenInputValue = document.querySelector("#message-id").value
@@ -31,17 +34,19 @@ const messageForm = () => {
                 const editedMessage = {
                     id: parseInt(document.querySelector("#message-id").value, 10),
                     text: document.querySelector("#message-text").value,
-                    date: Date.now()
+                    title: document.querySelector("#message-title").value,
+                    exCompDate: Date.now()
                 }
 
-                editedMessage(editedMessage).then(() => {
+                editMessage(editedMessage).then(() => {
                     eventHub.dispatchEvent(new CustomEvent("messageHasBeenEdited"))
                 })
             } else {
                 // Else, save the notes with a POST operation
                 const newMessage = {
-                    message: document.querySelector("#Message-message").value,
-                    date: Date.now()
+                    text: document.querySelector("#message-text").value,
+                    title: document.querySelector("#message-title").value,
+                    exCompDate: Date.now()
                 }
 
                 saveMessage(newMessage).then(
@@ -54,25 +59,25 @@ const messageForm = () => {
         }
     })
 
-    eventHub.addEventListener("click", clickEvent => {
-        if (clickEvent.target.id === "showMessage") {
-            const message = new CustomEvent("showMessageButtonClicked")
-            eventHub.dispatchEvent(message)
-        }
-    })
+    // eventHub.addEventListener("click", clickEvent => {
+    //     if (clickEvent.target.id === "showMessages") {
+    //         const message = new CustomEvent("showMessageButtonClicked")
+    //         eventHub.dispatchEvent(message)
+    //     }
+    // })
 
     const render = () => {
         contentTarget.innerHTML = `
             <details>
-                <summary>message</summary>
-
+                <summary>Messages</summary>
                 <input type="hidden" id="message-id" />
-
-                <div class="messsage__field">
-                    Message: <input type="text" id="message-message" />
+                <div class="message__field">
+                    Title: <input type="text" id="message-title" />
+                </div>
+                <div class="message__field">
+                    Text: <input type="text" id="message-text" />
                 </div>
                 <button class="message__field" id="saveMessage">Save Message</button>
-                <button class="message__field" id="showMessage">Show Message</button>
             </details>
         `
     }
@@ -80,4 +85,4 @@ const messageForm = () => {
     render()
 }
 
-export default messageForm
+export default MessageFormComponent
