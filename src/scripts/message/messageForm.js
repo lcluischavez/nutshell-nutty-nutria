@@ -6,7 +6,7 @@ const contentTarget = document.querySelector(".messageFormContainer")
 
 const MessageFormComponent = () => {
 
-    eventHub.addEventListener("editButtonClicked", event => {
+    eventHub.addEventListener("editMessageButtonClicked", event => {
         const messageToBeEdited = event.detail.messageId
 
         const allMessagesArray = useMessages()

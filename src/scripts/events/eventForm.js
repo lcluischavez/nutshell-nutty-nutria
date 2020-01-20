@@ -5,7 +5,7 @@ const contentTarget = document.querySelector(".eventFormContainer")
 
 const eventFormComponent = () => {
 
-    eventHub.addEventListener("editButtonClicked", event => {
+    eventHub.addEventListener("editEventButtonClicked", event => {
         const eventToBeEdited = event.detail.eventId
 
         const allEventsArray = useEvents()

@@ -14,7 +14,7 @@ const MessageListComponent = () => {
         if (clickEvent.target.id.startsWith("editMessage--")) {
             const [deletePrefix, messageId] = clickEvent.target.id.split("--")
 
-            const editEvent = new CustomEvent("editButtonClicked", {
+            const editEvent = new CustomEvent("editMessageButtonClicked", {
                 detail: {
                     messageId: messageId
                 }
