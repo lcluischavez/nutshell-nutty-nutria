@@ -19,7 +19,7 @@ const MessageFormComponent = () => {
 
         document.querySelector("#message-id").value = theFoundedMessage.id
         document.querySelector("#message-text").value = theFoundedMessage.text
-        document.querySelector("#message-title").value = theFoundedMessage.suspect
+        document.querySelector("#message-title").value = theFoundedMessage.title
     })
 
     // Handle internal element click
