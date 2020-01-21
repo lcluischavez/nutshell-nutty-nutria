@@ -54,7 +54,7 @@ const MessageFormComponent = () => {
     })
 
     eventHub.addEventListener("click", clickEvent => {
-        if (clickEvent.target.id === "showMessages") {
+        if (clickEvent.target.id === "showMessage") {
             const message = new CustomEvent("showMessageButtonClicked")
             eventHub.dispatchEvent(message)
         }

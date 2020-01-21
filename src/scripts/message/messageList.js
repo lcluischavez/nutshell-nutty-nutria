@@ -28,7 +28,7 @@ const MessageListComponent = () => {
 
             deleteMessage(messageId).then(
                 () => {
-                   const theNewMessages = useMessages()
+                   const theNewMessage = useMessages()
                     render(theNewMessage)
                 }
             )
@@ -54,11 +54,9 @@ const MessageListComponent = () => {
             (individualMessage) => {
                 return `
                     <section class="message">
-                        <br>
-                        <div>${individualMessage.messages}</div>
+                        <div>${individualMessage.messages}</div>                        
+                        <button id="deleteMessage--${individualMessage.id}">Delete</button>
                         <button id="editMessage--${individualMessage.id}">Edit</button>
-                        <br>
-                        <br>
                     </section>
                 `
             }

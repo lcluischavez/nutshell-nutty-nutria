@@ -4,8 +4,8 @@ const eventHub = document.querySelector(".container")
 const contentTarget = document.querySelector(".friendFormContainer")
 
 const FriendFormComponent = () => {
-
-    eventHub.addEventListener("editFriendsButtonClicked", event => {
+ 
+    eventHub.addEventListener("editFriendButtonClicked", event => {
         const friendToBeEdited = event.detail.friendId
 
         const allFriendsArray = useFriends()
@@ -49,8 +49,8 @@ const FriendFormComponent = () => {
 
                 saveFriend(newFriend).then(
                     () => {
-                        const friend = new CustomEvent("friendCreated")
-                        eventHub.dispatchEvent(friend)
+                        const message = new CustomEvent("friendCreated")
+                        eventHub.dispatchEvent(message)
                     }
                 )
             }
@@ -59,8 +59,8 @@ const FriendFormComponent = () => {
 
     eventHub.addEventListener("click", clickEvent => {
         if (clickEvent.target.id === "showFriends") {
-            const friend = new CustomEvent("showFriendButtonClicked")
-            eventHub.dispatchEvent(friend)
+            const message = new CustomEvent("showFriendButtonClicked")
+            eventHub.dispatchEvent(message)
         }
     })
 
@@ -76,7 +76,7 @@ const FriendFormComponent = () => {
                     InitiatedId: <input type="text" id="friend-InitiatedId" />
                 </div>
                 <button class="friend__field" id="saveFriend">Send Friend</button>
-                <button class="friend__field" id="showFreind">Show Friend</button>
+                <button class="friend__field" id="showFriends">Show Friend</button>
             </details>
         `
     }
