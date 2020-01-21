@@ -1,6 +1,6 @@
 import { getFriends, useFriends, deleteFriend } from "./friendDataProvider.js"
 
-const contentTarget = document.querySelector(".friendContainer")
+const contentTarget = document.querySelector(".friendsContainer")
 const eventHub = document.querySelector(".container")
 
 const FriendListComponent = () => {

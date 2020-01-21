@@ -1,6 +1,6 @@
 import { getMessages, useMessages, deleteMessage } from "./messageDataProvider.js"
 
-const contentTarget = document.querySelector(".messageContainer")
+const contentTarget = document.querySelector(".messagesContainer")
 const eventHub = document.querySelector(".container")
 
 const MessageListComponent = () => {
