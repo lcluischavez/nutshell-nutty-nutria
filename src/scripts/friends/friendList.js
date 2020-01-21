@@ -28,8 +28,8 @@ const FriendListComponent = () => {
 
             deleteFriend(friendId).then(
                 () => {
-                   const theNewFriend = useFriends()
-                    render(theNewFriend)
+                   const theNewFriends = useFriends()
+                    render(theNewFriends)
                 }
             )
         }
@@ -54,16 +54,12 @@ const FriendListComponent = () => {
             (individualFriend) => {
                 return `
                     <section class="friend">
-                        <div>${individualFriend.title}</div>
+                        <div>${individualFriend.id}</div>
                         <br>
-                        <div>${individualFriend.text}</div>
-                        <div>
-                            ${new Date(individualFriend.exCompDate).toLocaleDateString("us-en")}
-                            ${new Date(individualFriend.exCompDate).toLocaleTimeString("us-en")}
-                        </div>
-                        <button id="deleteMessage--${individualFriend.id}">Delete</button>
-                        <button id="editMessage--${individualFriend.id}">Edit</button>
+                        <div>${individualFriend.userId}</div>
                         <br>
+                        <div>${individualFriend.InitiatedId}</div>
+                        <button id="deleteFriend--${individualFriend.id}">Delete</button>
                         <br>
                     </section>
                 `

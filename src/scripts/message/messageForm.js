@@ -23,7 +23,6 @@ const MessageFormComponent = () => {
 
     // Handle internal element click
     eventHub.addEventListener("click", clickEvent => {
-console.log(clickEvent.target);
         if (clickEvent.target.id === "saveMessage") {
             // Does the hidden input field have a value?
             const hiddenInputValue = document.querySelector("#message-id").value

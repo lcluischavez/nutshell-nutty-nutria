@@ -1,8 +1,7 @@
-import { saveFriends, getFriends, useFriends, editFriend } from "./friendDataProvider.js"
+import { saveFriend, getFriends, useFriends, editFriend } from "./friendDataProvider.js"
 
 const eventHub = document.querySelector(".container")
 const contentTarget = document.querySelector(".friendFormContainer")
-
 
 const FriendFormComponent = () => {
 
@@ -18,41 +17,40 @@ const FriendFormComponent = () => {
         )
 
         document.querySelector("#friend-id").value = theFoundedFriend.id
-        document.querySelector("#friend-text").value = theFoundedFriend.text
-        document.querySelector("#friend-title").value = theFoundedFriend.title
+        document.querySelector("#friend-userId").value = theFoundedFriend.userId
+        document.querySelector("#friend-InitiatedId").value = theFoundedFriend.InitiatedId
     })
 
     // Handle internal element click
     eventHub.addEventListener("click", clickEvent => {
-console.log(clickEvent.target);
-        if (clickEvent.target.id === "saveMessage") {
+// console.log(clickEvent.target);
+        if (clickEvent.target.id === "saveFriend") {
             // Does the hidden input field have a value?
-            const hiddenInputValue = document.querySelector("#message-id").value
+            const hiddenInputValue = document.querySelector("#friend-id").value
 
             // If so, edit the note with a PUT operation
             if (hiddenInputValue !== "") {
-                const editedMessage = {
-                    id: parseInt(document.querySelector("#message-id").value, 10),
-                    text: document.querySelector("#message-text").value,
-                    title: document.querySelector("#message-title").value,
-                    exCompDate: Date.now()
+                const editedFriend = {
+                    id: parseInt(document.querySelector("#friend-id").value, 10),
+                    userId: document.querySelector("#friend-userId").value,
+                    InitiatedId: document.querySelector("#friend-InitiatedId").value
                 }
 
-                editMessage(editedMessage).then(() => {
-                    eventHub.dispatchEvent(new CustomEvent("messageHasBeenEdited"))
+                editFriend(editedFriend).then(() => {
+                    eventHub.dispatchEvent(new CustomEvent("friendHasBeenEdited"))
                 })
             } else {
                 // Else, save the notes with a POST operation
-                const newMessage = {
-                    text: document.querySelector("#message-text").value,
-                    title: document.querySelector("#message-title").value,
-                    exCompDate: Date.now()
+                const newFriend = {
+                    id: document.querySelector("#friend-id").value,
+                    userId: document.querySelector("#friend-userId").value,
+                    InitiatedId: document.querySelector("#friend-InitiatedId").value
                 }
 
-                saveMessage(newMessage).then(
+                saveFriend(newFriend).then(
                     () => {
-                        const message = new CustomEvent("messageCreated")
-                        eventHub.dispatchEvent(message)
+                        const friend = new CustomEvent("friendCreated")
+                        eventHub.dispatchEvent(friend)
                     }
                 )
             }
@@ -60,25 +58,25 @@ console.log(clickEvent.target);
     })
 
     eventHub.addEventListener("click", clickEvent => {
-        if (clickEvent.target.id === "showMessages") {
-            const message = new CustomEvent("showMessageButtonClicked")
-            eventHub.dispatchEvent(message)
+        if (clickEvent.target.id === "showFriends") {
+            const friend = new CustomEvent("showFriendButtonClicked")
+            eventHub.dispatchEvent(friend)
         }
     })
 
     const render = () => {
         contentTarget.innerHTML = `
             <details>
-                <summary>Messages</summary>
-                <input type="hidden" id="message-id" />
-                <div class="message__field">
-                    Title: <input type="text" id="message-title" />
+                <summary>Friends</summary>
+                <input type="hidden" id="friend-id" />
+                <div class="friend__field">
+                    userId: <input type="text" id="friend-userId" />
                 </div>
-                <div class="message__field">
-                    Message: <input type="text" id="message-text" />
+                <div class="friend__field">
+                    InitiatedId: <input type="text" id="friend-InitiatedId" />
                 </div>
-                <button class="message__field" id="saveMessage">Send Message</button>
-                <button class="message__field" id="showMessage">Show Message</button>
+                <button class="friend__field" id="saveFriend">Send Friend</button>
+                <button class="friend__field" id="showFreind">Show Friend</button>
             </details>
         `
     }
@@ -86,4 +84,4 @@ console.log(clickEvent.target);
     render()
 }
 
-export default MessageFormComponent
+export default FriendFormComponent
