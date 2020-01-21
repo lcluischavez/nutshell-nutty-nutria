@@ -1,35 +1,25 @@
 import { saveTask, getTasks, useTasks, editTask } from "./TaskProvider.js"
-
 const eventHub = document.querySelector(".container")
 const contentTarget = document.querySelector(".taskFormContainer")
-
-
 const TaskFormComponent = () => {
-
     eventHub.addEventListener("editTaskButtonClicked", event => {
         const taskToBeEdited = event.detail.taskId
-
         const allTasksArray = useTasks()
-
         const theFoundedTask = allTasksArray.find(
             (currentTaskObject) => {
                 return currentTaskObject.id === parseInt(taskToBeEdited, 10)
             }
         )
-
         document.querySelector("#task-id").value = theFoundedTask.id
         document.querySelector("#task-task").value = theFoundedTask.task
         document.querySelector("#task-name").value = theFoundedTask.name
         document.querySelector("#task-exCompDate").value = theFoundedTask.exCompDate
-
     })
-
     // Handle internal element click
     eventHub.addEventListener("click", clickEvent => {
         if (clickEvent.target.id === "saveTask") {
             // Does the hidden input field have a value?
             const hiddenInputValue = document.querySelector("#task-id").value
-
             // If so, edit the note with a PUT operation
             if (hiddenInputValue !== "") {
                 const editedTask = {
@@ -38,7 +28,6 @@ const TaskFormComponent = () => {
                     name: document.querySelector("#task-name").value,
                     exCompDate: document.querySelector("#task-exCompDate").value,
                 }
-
                 editTask(editedTask).then(() => {
                     eventHub.dispatchEvent(new CustomEvent("taskHasBeenEdited"))
                 })
@@ -49,7 +38,6 @@ const TaskFormComponent = () => {
                     name: document.querySelector("#task-name").value,
                     exCompDate: document.querySelector("#task-exCompDate").value,
                 }
-
                 saveTask(newTask).then(
                     () => {
                         const message = new CustomEvent("taskCreated")
@@ -59,14 +47,12 @@ const TaskFormComponent = () => {
             }
         }
     })
-
     eventHub.addEventListener("click", clickEvent => {
         if (clickEvent.target.id === "showTasks") {
             const message = new CustomEvent("showTaskButtonClicked")
             eventHub.dispatchEvent(message)
         }
     })
-
     const render = () => {
         contentTarget.innerHTML = `
             <details>
@@ -86,8 +72,6 @@ const TaskFormComponent = () => {
             </details>
         `
     }
-
     render()
 }
-
 export default TaskFormComponent

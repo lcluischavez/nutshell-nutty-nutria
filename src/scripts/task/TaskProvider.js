@@ -1,11 +1,8 @@
 let tasks = []
-
 const setTasks = (taskArray) => {
     tasks = taskArray.slice()
 }
-
 export const useTasks = () => tasks.slice()
-
 export const editTask = (taskObject) => {
     return fetch(`http://localhost:3000/tasks/${taskObject.id}`, {
         method: "PUT",
@@ -16,14 +13,12 @@ export const editTask = (taskObject) => {
     })
             .then(getTasks)
 }
-
 export const deleteTask = (taskId) => {
     return fetch(`http://localhost:3000/tasks/${taskId}`, {
         method: "DELETE"
     })
     .then(getTasks)
 }
-
 export const saveTask = task => {
     return fetch('http://localhost:3000/tasks', {
         method: "POST",
@@ -34,7 +29,6 @@ export const saveTask = task => {
     })
     .then(getTasks)
 }
-
 export const getTasks = () => {
     // Load database state into application state
     return fetch("http://localhost:3000/tasks")
@@ -43,11 +37,3 @@ export const getTasks = () => {
             tasks = taskArray.slice()
         })
 }
-
-// let tasks = []
-
-// export const useTasks = () => tasks.slice()
-
-// export const getTasks = () => fetch("http://localhost:3000/tasks")
-//     .then(res => res.json())
-//     .then(parsedTasks => tasks = parsedTasks)

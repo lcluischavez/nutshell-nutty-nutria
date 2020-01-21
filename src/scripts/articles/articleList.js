@@ -4,14 +4,14 @@ const contentTarget = document.querySelector(".articlesContainer")
 const eventHub = document.querySelector(".container")
 
 const ArticleListComponent = () => {
-
     eventHub.addEventListener("articleHasBeenEdited", event => {
         const updatedArticles = useArticles()
         render(updatedArticles)
     })
-
+    
     eventHub.addEventListener("click", clickEvent => {
         if (clickEvent.target.id.startsWith("editArticle--")) {
+
             const [deletePrefix, articleId] = clickEvent.target.id.split("--")
 
             const editEvent = new CustomEvent("editArticleButtonClicked", {
@@ -38,7 +38,6 @@ const ArticleListComponent = () => {
     const renderArticlesAgain = () => {
         const allTheArticles = useArticles()
         render(allTheArticles)
-
     }
 
     eventHub.addEventListener("articleCreated", event => {
@@ -74,4 +73,3 @@ const ArticleListComponent = () => {
 }
 
 export default ArticleListComponent
-
