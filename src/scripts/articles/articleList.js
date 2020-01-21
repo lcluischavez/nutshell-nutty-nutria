@@ -61,7 +61,7 @@ const ArticleListComponent = () => {
                         <div>
                             ${individualArticle.timeStamp}
                         </div>
-                        <button id="deleteArticle--${individualArticle.id}">Complete</button>
+                        <button id="deleteArticle--${individualArticle.id}">Delete</button>
                         <button id="editArticle--${individualArticle.id}">Edit</button>
                         <br>
                         <br>
