@@ -14,7 +14,7 @@ const eventListComponent = () => {
         if (clickEvent.target.id.startsWith("editEvent--")) {
             const [deletePrefix, eventId] = clickEvent.target.id.split("--")
 
-            const editEvent = new CustomEvent("editButtonClicked", {
+            const editEvent = new CustomEvent("editEventButtonClicked", {
                 detail: {
                     eventId: eventId
                 }
@@ -55,15 +55,14 @@ const eventListComponent = () => {
                 return `
                     <section class="event">
                         <div>${individualEvent.id}</div>
-                        <br>
                         <div>${individualEvent.name}</div>
+                        <div>${individualEvent.location}</div>
                         <div>
                             ${new Date(individualEvent.date).toLocaleDateString("us-en")}
                             ${new Date(individualEvent.date).toLocaleTimeString("us-en")}
                         </div>
                         <button id="deleteEvent--${individualEvent.id}">Delete</button>
                         <button id="editEvent--${individualEvent.id}">Edit</button>
-                        <br>
                         <br>
                     </section>
                 `

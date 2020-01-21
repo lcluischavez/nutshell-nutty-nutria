@@ -57,4 +57,9 @@ const TaskListComponent = () => {
         ).join("")
     }
 }
+<<<<<<< HEAD
 export default TaskListComponent
+=======
+
+export default TaskListComponent
+>>>>>>> master

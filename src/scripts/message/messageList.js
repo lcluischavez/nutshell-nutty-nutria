@@ -1,6 +1,6 @@
 import { getMessages, useMessages, deleteMessage } from "./messageDataProvider.js"
 
-const contentTarget = document.querySelector(".messageContainer")
+const contentTarget = document.querySelector(".messagesContainer")
 const eventHub = document.querySelector(".container")
 
 const MessageListComponent = () => {
@@ -28,7 +28,7 @@ const MessageListComponent = () => {
 
             deleteMessage(messageId).then(
                 () => {
-                   const theNewMessages = useMessages()
+                   const theNewMessage = useMessages()
                     render(theNewMessage)
                 }
             )
@@ -54,16 +54,9 @@ const MessageListComponent = () => {
             (individualMessage) => {
                 return `
                     <section class="message">
-                        <div>${individualMessage.title}</div>
-                        <br>
-                        <div>${individualMessage.text}</div>
-                        <div>
-                            ${new Date(individualMessage.exCompDate).toLocaleDateString("us-en")}
-                            ${new Date(individualMessage.exCompDate).toLocaleTimeString("us-en")}
-                        </div>
+                        <div>${individualMessage.messages}</div>                        
+                        <button id="deleteMessage--${individualMessage.id}">Delete</button>
                         <button id="editMessage--${individualMessage.id}">Edit</button>
-                        <br>
-                        <br>
                     </section>
                 `
             }
@@ -73,3 +66,4 @@ const MessageListComponent = () => {
 }
 
 export default MessageListComponent
+    
