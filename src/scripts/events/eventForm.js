@@ -79,7 +79,8 @@ const eventFormComponent = () => {
                     Date: <input type="dateTime-local" id="event-Date" />
                 </div>
                 <button class="event__field" id="saveEvent">Save Event</button>
-                <button class="event__field" id="showEvents">show Event</button>
+                <button class="friend__field" id="showEvents">Show Events</button>
+
             </details>
         `
     }

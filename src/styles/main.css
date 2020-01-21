@@ -1,0 +1,37 @@
+h1 {
+    size: 70px;
+    color: white;
+    text-align: center;
+    background-image: url("https://www.syfy.com/sites/syfy/files/styles/1140x640/public/wire/legacy/MarvelDCFight.jpg");
+    background-repeat: no-repeat;
+    background-position: center top; 
+    background-size: cover;
+    height: 250px;
+}
+
+.container{
+    display: flex;
+  }
+
+.leftContainer {    
+    margin-top: 40px;
+    flex-basis: 25%;
+    border: 1px solid black;
+}
+
+.centerContainer{
+    display: flex;
+    flex-basis: 50%;
+    flex-wrap: wrap;
+    border: 1px solid black;
+}
+
+.rightContainer {    
+    margin-top: 40px;
+    flex-basis: 25%;
+    border: 1px solid black;
+}
+
+.headings{
+    justify-content: center;
+}

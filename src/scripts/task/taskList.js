@@ -1,28 +1,104 @@
-import { useTasks } from "./taskDataProvider.js"
-import { useUsers } from "../users/userProvider.js"
-import Task from "./task.js"
+import { getTasks, useTasks, deleteTask } from "./TaskProvider.js"
 
+const contentTarget = document.querySelector(".tasksContainer")
+const eventHub = document.querySelector(".container")
 
+const TaskListComponent = () => {
 
-const contentTarget = document.querySelector(".tasks")
+    eventHub.addEventListener("taskHasBeenEdited", event => {
+        const updatedTasks = useTasks()
+        render(updatedTasks)
+    })
 
-export const TaskList = () => {
-    const tasks = useTasks()
-    const users = useUsers()
+    eventHub.addEventListener("click", clickEvent => {
+        if (clickEvent.target.id.startsWith("editTask--")) {
+            const [deletePrefix, taskId] = clickEvent.target.id.split("--")
 
-    const render = () => {
-        contentTarget.innerHTML = tasks.map(task => {
-            // Find this product's type
-            const user = users.filter(user => user.id === task.userId)
+            const editEvent = new CustomEvent("editTaskButtonClicked", {
+                detail: {
+                    taskId: taskId
+                }
+            })
 
-            // Get HTML representation of product
-            const html = Task(task, user)
+            eventHub.dispatchEvent(editEvent)
+        }
 
-            return html
-        }).join("")
+        if (clickEvent.target.id.startsWith("deleteTask--")) {
+            const [deletePrefix, taskId] = clickEvent.target.id.split("--")
+
+            deleteTask(taskId).then(
+                () => {
+                    const theNewTasks = useTasks()
+                    render(theNewTasks)
+                }
+            )
+        }
+    })
+
+    const renderTasksAgain = () => {
+        const allTheTasks = useTasks()
+        render(allTheTasks)
+
     }
 
-    render()
+    eventHub.addEventListener("taskCreated", event => {
+        renderTasksAgain()
+    })
+
+    eventHub.addEventListener("showTaskButtonClicked", event => {
+        renderTasksAgain()
+    })
+
+    const render = (tasksCollection) => {
+        contentTarget.innerHTML = tasksCollection.map(
+            (individualTask) => {
+                return `
+                    <section class="task">
+                        <div>${individualTask.name}</div>
+                        <br>
+                        <div>${individualTask.task}</div>
+                        <div>
+                            ${individualTask.exCompDate}
+                        </div>
+                        <button id="deleteTask--${individualTask.id}">Complete</button>
+                        <button id="editTask--${individualTask.id}">Edit</button>
+                        <br>
+                        <br>
+                    </section>
+                `
+            }
+        ).join("")
+    }
+
 }
 
-export default TaskList
+export default TaskListComponent
+
+// import { useTasks } from "./taskDataProvider.js"
+// import { useUsers } from "../users/userProvider.js"
+// import Task from "./task.js"
+
+
+
+// const contentTarget = document.querySelector(".tasks")
+
+// export const TaskList = () => {
+//     const tasks = useTasks()
+//     const users = useUsers()
+
+//     const render = () => {
+//         contentTarget.innerHTML = tasks.map(task => {
+//             // Find this product's type
+//             const user = users.filter(user => user.id === task.userId)
+
+//             // Get HTML representation of product
+//             const html = Task(task, user)
+
+//             return html
+//         }).join("")
+//     }
+
+//     render()
+// }
+
+// export default TaskList
