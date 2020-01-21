@@ -2,20 +2,26 @@ import { getUsers } from "./users/userProvider.js"
 import loginList from "./login/loginList.js"
 import { loginFunction } from "./login/loginFunction.js";
 import { getCurrentUser } from "./users/userProvider.js";
-import { getArticles } from "./articles/articleDataProvider.js";
-import { getTasks } from "./task/taskDataProvider.js";
+import { getArticles } from "./articles/articleProvider.js";
+import { getTasks } from "./task/taskProvider.js";
 import { getEvents } from "./events/eventProvider.js";
 import ArticleList from "./articles/articleList.js";
 import TaskList from "./task/taskList.js";
 import EventList from "./events/eventList.js";
 
+
+const login = () => {
+getUsers()
+   .then(getArticles)
+   .then(getTasks)
+   .then(getEvents)
+}
+
 getUsers()
     .then(loginList)
     .then(loginFunction)
     .then(getCurrentUser)
-    .then(getArticles)
-    .then(getTasks)
-    .then(getEvents)
+    .then(login)
     .then(ArticleList)
     .then(TaskList)
     .then(EventList)

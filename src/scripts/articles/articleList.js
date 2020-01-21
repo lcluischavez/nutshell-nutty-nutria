@@ -1,28 +1,77 @@
-import { useArticles } from "./articleDataProvider.js"
-import { useUsers } from "../users/userProvider.js"
-import Article from "./article.js"
+import { getArticles, useArticles, deleteArticle } from "./ArticleProvider.js"
 
-const contentTarget = document.querySelector(".articles")
+const contentTarget = document.querySelector(".articlesContainer")
+const eventHub = document.querySelector(".container")
 
-export const ArticleList = () => {
-    const articles = useArticles()
-    const users = useUsers()
+const ArticleListComponent = () => {
 
-    console.log(users)
+    eventHub.addEventListener("articleHasBeenEdited", event => {
+        const updatedArticles = useArticles()
+        render(updatedArticles)
+    })
 
-    const render = () => {
-        contentTarget.innerHTML = articles.map(article => {
-            
-            const user = users.filter(user => user.id === article.userId)
+    eventHub.addEventListener("click", clickEvent => {
+        if (clickEvent.target.id.startsWith("editArticle--")) {
+            const [deletePrefix, articleId] = clickEvent.target.id.split("--")
 
+            const editEvent = new CustomEvent("editArticleButtonClicked", {
+                detail: {
+                    articleId: articleId
+                }
+            })
 
-            const html = Article(article, user)
+            eventHub.dispatchEvent(editEvent)
+        }
 
-            return html
-        }).join("")
+        if (clickEvent.target.id.startsWith("deleteArticle--")) {
+            const [deletePrefix, articleId] = clickEvent.target.id.split("--")
+
+            deleteArticle(articleId).then(
+                () => {
+                    const theNewArticles = useArticles()
+                    render(theNewArticles)
+                }
+            )
+        }
+    })
+
+    const renderArticlesAgain = () => {
+        const allTheArticles = useArticles()
+        render(allTheArticles)
+
     }
 
-    render()
+    eventHub.addEventListener("articleCreated", event => {
+        renderArticlesAgain()
+    })
+
+    eventHub.addEventListener("showArticleButtonClicked", event => {
+        renderArticlesAgain()
+    })
+
+    const render = (articlesCollection) => {
+        contentTarget.innerHTML = articlesCollection.map(
+            (individualArticle) => {
+                return `
+                    <section class="article">
+                        <div>${individualArticle.title}</div>
+                        <br>
+                        <div>${individualArticle.url}</div>
+                        <div>${individualArticle.synopsis}</div>
+                        <div>
+                            ${individualArticle.timeStamp}
+                        </div>
+                        <button id="deleteArticle--${individualArticle.id}">Delete</button>
+                        <button id="editArticle--${individualArticle.id}">Edit</button>
+                        <br>
+                        <br>
+                    </section>
+                `
+            }
+        ).join("")
+    }
+
 }
 
-export default ArticleList
+export default ArticleListComponent
+

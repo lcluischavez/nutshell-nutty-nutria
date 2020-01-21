@@ -2,7 +2,7 @@ export const loginForm = () => {
 
     return `<div class="loginPage">
 
-    <h1>Nutshell Login Page</h1>
+    <h2>Nutshell Login Page</h2>
 
     <form name="login">
         Username: <input type="text" name="userid" id="username"/>
