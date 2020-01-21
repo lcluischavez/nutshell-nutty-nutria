@@ -13,15 +13,16 @@ import { loginFunction } from "./login/loginFunction.js";
 import { getLoginUsers } from "./login/loginProvider.js"
 
 let welcome = () = {
-    getArticles()
-    getTasks()
-    getEvents()
+
 }
 
 getUsers()
     .then(loginList)
     .then(loginFunction)
 getCurrentUser()
+    getArticles()
+    getTasks()
+    getEvents()
     .then(welcome)
     .then(ArticleList)
     .then(TaskList)
