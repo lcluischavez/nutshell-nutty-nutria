@@ -18,13 +18,11 @@ const MessageFormComponent = () => {
         )
 
         document.querySelector("#message-id").value = theFoundedMessage.id
-        document.querySelector("#message-text").value = theFoundedMessage.text
-        document.querySelector("#message-title").value = theFoundedMessage.title
+        document.querySelector("#message-messages").value = theFoundedMessage.messages
     })
 
     // Handle internal element click
     eventHub.addEventListener("click", clickEvent => {
-console.log(clickEvent.target);
         if (clickEvent.target.id === "saveMessage") {
             // Does the hidden input field have a value?
             const hiddenInputValue = document.querySelector("#message-id").value
@@ -33,9 +31,7 @@ console.log(clickEvent.target);
             if (hiddenInputValue !== "") {
                 const editedMessage = {
                     id: parseInt(document.querySelector("#message-id").value, 10),
-                    text: document.querySelector("#message-text").value,
-                    title: document.querySelector("#message-title").value,
-                    exCompDate: Date.now()
+                    messages: document.querySelector("#message-messages").value,
                 }
 
                 editMessage(editedMessage).then(() => {
@@ -44,9 +40,7 @@ console.log(clickEvent.target);
             } else {
                 // Else, save the notes with a POST operation
                 const newMessage = {
-                    text: document.querySelector("#message-text").value,
-                    title: document.querySelector("#message-title").value,
-                    exCompDate: Date.now()
+                    messages: document.querySelector("#message-messages").value,
                 }
 
                 saveMessage(newMessage).then(
@@ -60,7 +54,7 @@ console.log(clickEvent.target);
     })
 
     eventHub.addEventListener("click", clickEvent => {
-        if (clickEvent.target.id === "showMessages") {
+        if (clickEvent.target.id === "showMessage") {
             const message = new CustomEvent("showMessageButtonClicked")
             eventHub.dispatchEvent(message)
         }
@@ -72,10 +66,7 @@ console.log(clickEvent.target);
                 <summary>Messages</summary>
                 <input type="hidden" id="message-id" />
                 <div class="message__field">
-                    Title: <input type="text" id="message-title" />
-                </div>
-                <div class="message__field">
-                    Message: <input type="text" id="message-text" />
+                    Message: <input type="text" id="message-messages" />
                 </div>
                 <button class="message__field" id="saveMessage">Send Message</button>
                 <button class="message__field" id="showMessage">Show Message</button>

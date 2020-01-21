@@ -70,15 +70,17 @@ const eventFormComponent = () => {
                 <summary>Events</summary>
                 <input type="hidden" id="event-id" />
                 <div class="event__field">
-                    Title: <input type="name" id="event-name" />
+                    Name: <input type="name" id="event-name" />
                 </div>
                 <div class="event__field">
-                    Text: <input type="location" id="event-location" />
+                    Location: <input type="text" id="event-location" />
                 </div>
                 <div class="event__field">
                     Date: <input type="dateTime-local" id="event-Date" />
                 </div>
                 <button class="event__field" id="saveEvent">Save Event</button>
+                <button class="friend__field" id="showEvents">Show Events</button>
+
             </details>
         `
     }
