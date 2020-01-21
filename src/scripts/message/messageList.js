@@ -1,117 +1,75 @@
-import { useMessages } from "./messageDataProvider.js"
-import { useUsers } from "../users/userProvider.js"
-import messagesComponent from "./message.js"
+import { getMessages, useMessages, deleteMessage } from "./messageDataProvider.js"
 
-const contentTarget = document.querySelector(".messages")
+const contentTarget = document.querySelector(".messageContainer")
+const eventHub = document.querySelector(".container")
 
-export const messageListComponent = () => {
-    const messages = useMessages()
-    const users = useUsers()
+const MessageListComponent = () => {
 
-    const render = () => {
-        contentTarget.innerHTML = messages.map(message => {
-            const user = users.filter(user => user.id === message.userId)
+    eventHub.addEventListener("messageHasBeenEdited", event => {
+        const updatedMessages = useMessages()
+        render(updatedMessages)
+    })
 
-            const html = messagesComponent(message, user)
+    eventHub.addEventListener("click", clickEvent => {
+        if (clickEvent.target.id.startsWith("editMessage--")) {
+            const [deletePrefix, messageId] = clickEvent.target.id.split("--")
 
-            return html
-        }).join("")
+            const editEvent = new CustomEvent("editMessageButtonClicked", {
+                detail: {
+                    messageId: messageId
+                }
+            })
+
+            eventHub.dispatchEvent(editEvent)
+        }
+
+        if (clickEvent.target.id.startsWith("deleteMessage--")) {
+            const [deletePrefix, messageId] = clickEvent.target.id.split("--")
+
+            deleteMessage(messageId).then(
+                () => {
+                   const theNewMessages = useMessages()
+                    render(theNewMessage)
+                }
+            )
+        }
+    })
+
+    const renderMessagesAgain = () => {
+        const allTheMessages = useMessages()
+        render(allTheMessages)
+
     }
 
-    render()
+    eventHub.addEventListener("messageCreated", event => {
+        renderMessagesAgain()
+    })
+
+    eventHub.addEventListener("showMessageButtonClicked", event => {
+        renderMessagesAgain()
+    })
+
+    const render = (messagesCollection) => {
+        contentTarget.innerHTML = messagesCollection.map(
+            (individualMessage) => {
+                return `
+                    <section class="message">
+                        <div>${individualMessage.title}</div>
+                        <br>
+                        <div>${individualMessage.text}</div>
+                        <div>
+                            ${new Date(individualMessage.exCompDate).toLocaleDateString("us-en")}
+                            ${new Date(individualMessage.exCompDate).toLocaleTimeString("us-en")}
+                        </div>
+                        <button id="editMessage--${individualMessage.id}">Edit</button>
+                        <br>
+                        <br>
+                    </section>
+                `
+            }
+        ).join("")
+    }
+
 }
 
-export default messageListComponent
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// 
-
-//     eventHub.addEventListener("messageHasBeenEdited", event => {
-//         const updatedMessage = useMessages()
-//         render(updatedMessage)
-//     })
-
-//     eventHub.addEventListener("click", clickEvent => {
-//         if (clickEvent.target.id.startsWith("editMessage--")) {
-//             const [deletePrefix, messageId] = clickEvent.target.id.split("--")
-
-//             const editEvent = new CustomEvent("editButtonClicked", {
-//                 detail: {
-//                     messageId: messageId
-//                 }
-//             })
-
-//             eventHub.dispatchEvent(editEvent)
-//         }
-
-//         if (clickEvent.target.id.startsWith("deleteMessage--")) {
-//             const [deletePrefix, noteId] = clickEvent.target.id.split("--")
-
-//             deleteMessage(messageId).then(
-//                 () => {
-//                     const theNewMessage = useMessages()
-//                     render(theNewMessage)
-//                 }
-//             )
-//         }
-//     })
-
-//     const renderMessagesAgain = () => {
-//         const allTheMessages = useMessages()
-//         render(allTheMessages)
-
-//     }
-
-//     eventHub.addEventListener("messageCreated", event => {
-//         renderMessageAgain()
-//     })
-
-//     eventHub.addEventListener("showMessageButtonClicked", event => {
-//         renderMessageAgain()
-//     })
-
-//     const render = (messagesCollection) => {
-//         contentTarget.innerHTML = messagesCollection.map(
-//             (individualMessage) => {
-//                 return `
-//                     <section class="message">
-//                         <div>${individualMessage.suspect}</div>
-//                         <div>${individualMessage.text}</div>
-//                         <div>
-//                             ${new Date(individualMessage.date).toLocaleDateString("us-en")}
-//                             ${new Date(individualMessage.date).toLocaleTimeString("us-en")}
-//                         </div>
-//                         <button id="deleteMessage--${individualMessage.id}">Delete</button>
-//                         <button id="editMessage--${individualMessage.id}">Edit</button>
-//                     </section>
-//                 `
-//             }
-//         ).join("")
-//     }
-
-// }
+export default MessageListComponent

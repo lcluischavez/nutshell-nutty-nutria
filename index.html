@@ -8,7 +8,7 @@
     <title>Nutshell</title>
 </head>
 
-<body class="body">
+<body>
 
     <div class="loginPage"></div>
 
@@ -16,35 +16,47 @@
 
     <article id=toggle id="container">
 
+   <main class="container">
+        
 
-   <main class="container" id="container">
-    <article class=toggle>
-        <section class=toggle> 
-            <h2 class="headings">Tasks</h2> 
-            <div class="tasks" id=tasks></div>
-        </section>
-        <br>
-        <section>
-            <h2 class="headings">Events</h2> 
-            <div class="events"></div>
-        </section>
-        <br>
-        <section>
-            <h2 class="headings">Articles</h2> 
-            <div class="articles" id=articles></div>
-        </section>
-        <br>
-        <section>
-            <h2 class="headings">Friends</h2> 
-            <div class="friends" id=freinds></div>
-        </section>
-        <br>
-        <section> 
-            <h2 class="headings">Messages</h2> 
-            <div class="messages"></div>
-        </section>
-    </article>
-   </main>
+    <article class="tasksContainer"></article>
+​
+    
+    <section> 
+        <h2 class="headings">Tasks</h2> 
+        <div class="tasks"></div>
+    </section>
+    <br>
+    <section>
+    <section>
+        <h2 class="headings">Events</h2>
+        <article class="eventFormContainer"></article> 
+        <article class="eventContainer"></article>
+    </section>
+    </section>
+    <br>
+    <section>
+        <h2 class="headings">Articles</h2> 
+        <div class="articles"></div>
+    </section>
+    <br>
+    <section>
+        <h2 class="headings">Friends</h2>
+        <article class="friendFormContainer"></article> 
+        <article class="friendsContainer"></article>
+    </section>
+    <br>
+    <section>
+        <h2 class="headings">Messages</h2>
+        <article class="messageFormContainer"></article> 
+        <article class="messagesContainer"></article>
+    </section>
+    <div class="filters"> 
+        <div class="filter filter__button"></div>    
+        <article class="messageContainer"></article>
+        <article class="messageFormContainer"></article>
+    </div> 
+    </main>
     <script type="module" src="./src/scripts/main.js"></script>
 </body>
 

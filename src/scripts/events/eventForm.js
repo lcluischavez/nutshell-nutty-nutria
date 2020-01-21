@@ -1,104 +1,90 @@
-// import { saveEvent, editEvents, deleteEvent, useEvents } from "./events/eventDataProvider.js";
+import { saveEvents, useEvents, editEvent } from "./eventProvider.js"
 
-// const eventHub = document.querySelector("#mainContainer")
-// const extraButtonTarget = document.querySelector(".extraButtonContainer")
-// const contentTarget = document.querySelector(".eventFormContainer")
-// const eventHTML = document.querySelector(".eventContainer")
+const eventHub = document.querySelector(".container")
+const contentTarget = document.querySelector(".eventFormContainer")
 
+const eventFormComponent = () => {
 
-// const eventFormComponent = () => {
+    eventHub.addEventListener("editEventButtonClicked", event => {
+        const eventToBeEdited = event.detail.eventId
 
-//   eventHub.addEventListener("editButtonClicked", event => {
-//     const eventToBeEdited = event.detail.noteId
+        const allEventsArray = useEvents()
 
-//     const allEventArray = useEvents()
+        const theFoundedEvent = allEventsArray.find(
+            (currentEventObject) => {
+                return currentEventObject.id === parseInt(eventToBeEdited, 10)
+            }
+        )
 
-//     const theFoundEvent = allEventArray.find(
-//       (currentEventObject) => {
-//         return currentEventObject.id === parseInt(eventToBeEdited, 10)
-//       }
-//     )
+        document.querySelector("#event-id").value = theFoundedEvent.id
+        document.querySelector("#event-name").value = theFoundedEvent.name
+        document.querySelector("#event-Date").value = theFoundedEvent.Date
+        document.querySelector("#event-location").value = theFoundedEvent.location
+    })
 
-//     document.getElementById("event-id").value = theFoundevent.id
-//     document.getElementById("event-name").value = theFoundEvent.name
-//     document.getElementById("event-location").value = theFoundEvent.location
-//     document.getElementById("event-userId").value = theFoundNote.userId
-//     document.getElementById("event-date").value = theFoundNote.date
-//   })
+    eventHub.addEventListener("click", clickEvent => {
+        if (clickEvent.target.id === "saveEvent") {
 
-  
-//   eventHub.addEventListener("click", clickEvent => {
-//     if (clickEvent.target.id === "saveEvent") {
-//       clickEvent.preventDefault()
-      
-//       const hiddenInputValue = document.querySelector("#event-id").value
-      
-//       if (hiddenInputValue !== "") {
-//         const editedEvent = {
-// id: document.querySelector('#event-id').value,
-//           name: document.querySelector('#event-name').value,
-//           location: document.querySelector('#event-location').value,
-//           date: "Edited " + new Date(Date.now()).toLocaleDateString('en-US'),
-//           userId: parseInt(document.querySelector("#event-useriId").value, 10)
-//         }
+            const hiddenInputValue = document.querySelector("#event-id").value
 
-//         editEvents(editedEvent).then(() => {
-//           eventHub.dispatchEvent(new CustomEvent("eventHasBeenEdited"))
-//         })
-//         document.getElementById("eventForm").reset()
-//         document.querySelector("#event-id").value = ""
-//       } else {
-        
+            if (hiddenInputValue !== "") {
+                const editedEvent = {
+                    id: parseInt(document.querySelector("#event-id").value, 10),
+                    name: document.querySelector("#event-name").value,
+                    location: document.querySelector("#event-location").value,
+                    Date: document.querySelector("#event-Date").value
+                }
 
-//         clickEvent.preventDefault()
+                editEvent(editedEvent).then(() => {
+                    eventHub.dispatchEvent(new CustomEvent("eventHasBeenEdited"))
+                })
+            } else {
 
-        
-//         const newEvent = {
-//           id: document.querySelector('#event-id').value,
-//           name: document.querySelector('#event-name').value,
-//           location: document.querySelector('#event-location').value,
-//           date: new Date(Date.now()).toLocaleDateString('en-US'),
-//           userId: document.querySelector('#event-userId').value,
-//         }
-        
-//         saveEvent(newEvent).then(() => document.getElementById("eventForm").reset())
-//           .then(() => {
-            
-//             if (eventHTML.innerHTML !== "") {
-//               const allEvents = new CustomEvent("eventCreated")
-//               eventHub.dispatchEvent(allEvents)
-//             }
-//           })
-//       }
-//     }
-//   })
+                const newEvent = {
+                    id: document.querySelector("#event-id").value,
+                    name: document.querySelector("#event-name").value,
+                    location: document.querySelector("#event-location").value,
+                    Date: document.querySelector("#event-Date").value
+                }
 
-//   eventHub.addEventListener("click", clickEvent => {
-//     if (clickEvent.target.id === "showEvents") {
-//       const allEvents = new CustomEvent("showNoteButtonClicked")
-//       eventHub.dispatchEvent(allEvents)
-//     }
-//   })
+                saveEvents(newEvent).then(
+                    () => {
+                        const message = new CustomEvent("eventCreated")
+                        eventHub.dispatchEvent(message)
+                    }
+                )
+            }
+        }
+    })
 
-//   const render = () => {
-//     contentTarget.innerHTML = `
-//             <form id="eventForm">
-//             <input type="hidden" id="event-id">
-//             <div class="eventForm">
-//             <label for="event-id">Event: </label>
-//             <input type="name" id="event-id" placeholder="Your event here...">
-//             <label for="event-name">name: </label>
-//             <input type="location" id="location-id-" placeholder="location here...">
-//             <button id="saveEvent">Save Event</button>
-//             </form>
-//             <br>`
-//     extraButtonTarget.innerHTML = `
-//             <div class="extraButtons">
-//             <button id="showEvents">Show Events</button>
-//             </div>`
-//   }
+    eventHub.addEventListener("click", clickEvent => {
+        if (clickEvent.target.id === "showEvents") {
+            const message = new CustomEvent("showEventButtonClicked")
+            eventHub.dispatchEvent(message)
+        }
+    })
 
-//   render()
-// }
+    const render = () => {
+        contentTarget.innerHTML = `
+            <details>
+                <summary>Events</summary>
+                <input type="hidden" id="event-id" />
+                <div class="event__field">
+                    Title: <input type="name" id="event-name" />
+                </div>
+                <div class="event__field">
+                    Text: <input type="location" id="event-location" />
+                </div>
+                <div class="event__field">
+                    Date: <input type="dateTime-local" id="event-Date" />
+                </div>
+                <button class="event__field" id="saveEvent">Save Event</button>
+                <button class="event__field" id="showEvents">show Event</button>
+            </details>
+        `
+    }
 
-// export default eventFormComponent
+    render()
+}
+
+export default eventFormComponent
