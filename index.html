@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head class="head">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -16,7 +16,7 @@
     <div class="loginPage"></div>
     <div id="registrationDiv"></div>
 
-    <main class="container">
+    <main class="container" style="display: none;">
         <div class="leftContainer">
             <section class="tasks"> 
                 <h2 class="headings">Tasks</h2> 
@@ -31,27 +31,38 @@
             </section >
         </div>
 
-        <div class=centerContainer>
-            <section class="articles">
-                <h2 class="headings">Articles</h2> 
-                <article class="articleFormContainer"></article>
-                <article class="articlesContainer"></article>
-            </section>
-        </div>
-
-        <div class="rightContainer">
-            <section class="friends">
-                <h2 class="headings">Friends</h2> 
-                <article class="friendFormContainer"></article> 
-                <article class="friendsContainer"></article>
-            </section>
-            <br>
-            <section class="messages"> 
-                <h2 class="headings">Messages</h2> 
-                <article class="messageFormContainer"></article> 
-                <article class="messagesContainer"></article>
-            </section>
-        </div>
+    <article class="tasksContainer"></article>
+​
+    
+    <section> 
+        <h2 class="headings">Tasks</h2> 
+        <div class="tasks"></div>
+    </section>
+    <br>
+    <section>
+    <section>
+        <h2 class="headings">Events</h2>
+        <article class="eventFormContainer"></article> 
+        <article class="eventContainer"></article>
+    </section>
+    </section>
+    <br>
+    <section>
+        <h2 class="headings">Articles</h2> 
+        <div class="articles"></div>
+    </section>
+    <br>
+    <section>
+        <h2 class="headings">Friends</h2>
+        <article class="friendFormContainer"></article> 
+        <article class="friendsContainer"></article>
+    </section>
+    <br>
+    <section>
+        <h2 class="headings">Messages</h2>
+        <article class="messageFormContainer"></article> 
+        <article class="messagesContainer"></article>
+    </section>
     </main>
     <script type="module" src="./src/scripts/main.js"></script>
 </body>
