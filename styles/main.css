@@ -1,0 +1,37 @@
+
+  * {
+   box-sizing: border-box; 
+  }
+  body {
+    margin: 0;
+  }
+  #container {
+    display: none;
+    min-height: calc(100vh - 40vh);
+  }
+ #container > #articles {
+    flex: 1;
+  }
+  #main > #tasks, 
+  #main > #freinds {
+    flex: 0 0 20vw;
+    background: beige;
+  }
+  #main > #tasks {
+    order: -1;
+  }
+  header, footer, #articles, #tasks, #freinds {
+    padding: 1em;
+  }
+  header, footer {
+    background: yellowgreen;
+    height: 20vh;
+  }
+
+  /* main {
+    display: none;
+    position: absolute;
+    width: 1800px;
+    height: 1800px;
+    background: darkgray;
+} */
