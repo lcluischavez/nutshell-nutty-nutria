@@ -18,7 +18,6 @@ const FriendFormComponent = () => {
 
         document.querySelector("#friend-id").value = theFoundedFriend.id
         document.querySelector("#friend-userId").value = theFoundedFriend.userId
-        document.querySelector("#friend-InitiatedId").value = theFoundedFriend.InitiatedId
     })
 
     // Handle internal element click
@@ -33,7 +32,6 @@ const FriendFormComponent = () => {
                 const editedFriend = {
                     id: parseInt(document.querySelector("#friend-id").value, 10),
                     userId: document.querySelector("#friend-userId").value,
-                    InitiatedId: document.querySelector("#friend-InitiatedId").value
                 }
 
                 editFriend(editedFriend).then(() => {
@@ -44,7 +42,6 @@ const FriendFormComponent = () => {
                 const newFriend = {
                     id: document.querySelector("#friend-id").value,
                     userId: document.querySelector("#friend-userId").value,
-                    InitiatedId: document.querySelector("#friend-InitiatedId").value
                 }
 
                 saveFriend(newFriend).then(
@@ -70,10 +67,9 @@ const FriendFormComponent = () => {
                 <summary>Friends</summary>
                 <input type="hidden" id="friend-id" />
                 <div class="friend__field">
-                    userId: <input type="text" id="friend-userId" />
+                    Friends: <input type="text" id="friend-userId" />
                 </div>
                 <div class="friend__field">
-                    InitiatedId: <input type="text" id="friend-InitiatedId" />
                 </div>
                 <button class="friend__field" id="saveFriend">Send Friend</button>
                 <button class="friend__field" id="showFriends">Show Friend</button>
