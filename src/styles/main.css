@@ -57,8 +57,9 @@
 } */
 
 /* https://farm9.staticflickr.com/8644/15964625458_d5c6d431ac_k.jpg */
+/* https://images.template.net/wp-content/uploads/2016/04/25114233/City-of-Delusion-HD-Background-Download.jpg */
 html {
-    background-image:  url("https://images.template.net/wp-content/uploads/2016/04/25114233/City-of-Delusion-HD-Background-Download.jpg");
+    background-image:  url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEUuRa5RXrJju8IdJYB6gsJuRXWhGvbtCKergrLJ5a-yJpxAi2&s");
     width: 100vw;
     height: 100vh;
     background-repeat:no-repeat;
@@ -152,4 +153,8 @@ body {
 main {
     background-color: rgba(17, 17, 17, 0.801);
     color: rgb(255, 255, 255);
+}
+
+#saveFriend {
+  
 }
