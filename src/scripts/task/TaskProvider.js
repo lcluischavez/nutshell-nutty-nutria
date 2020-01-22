@@ -36,9 +36,4 @@ export const getTasks = () => {
         .then((taskArray) => {
             tasks = taskArray.slice()
         })
-<<<<<<< HEAD
-}
-=======
-}
-
->>>>>>> master
+    }
