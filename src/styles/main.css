@@ -62,7 +62,7 @@ html {
     background-image:  url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEUuRa5RXrJju8IdJYB6gsJuRXWhGvbtCKergrLJ5a-yJpxAi2&s");
     width: 100vw;
     height: 100vh;
-    background-repeat:no-repeat;
+    background-repeat: repeat;
     background-size:cover;
     background-position:bottom;
 }
@@ -71,7 +71,7 @@ body {
     background-color: rgb(17, 17, 17, 0.8);
     color: rgb(255, 255, 255);
     border: thin;
-    height: 100%;
+    height: 280%;
 }
 
 .container{
