@@ -1,17 +1,6 @@
-# Nutshell: The Information Dashboard
+This project utilizing tasks, events, news article, friends, and chat messages.
 
-## Setup: Follow these steps exactly
-
-1. Clone this repository
-1. `cd` into the directory it creates
-1. Make a `database.json` file in the `api` directory
-1. Delete the `.ignore` file in the `api` directory
-
-## Instructions
-
-Nutshell is a new product offering that you have been tasked with building. It's a dashboard for people to use to organize their daily tasks, events, news article, friends, and chat messages.
-
-You will be utilizing all of the skills and concepts that you've learned up to this point in the course.
+Skills
 
 1. Functions
 1. Databases
@@ -25,67 +14,68 @@ You will be utilizing all of the skills and concepts that you've learned up to t
 1. Relational data
 1. ERDs
 
-To start you off, here's an example of what the resources in your API should look like once it's populated with some data from your application.
+To start you off, here's an example of what the resources in your API
 
 ### Users
 
 ```json
-{ "id": 1, "username": "Steve", "email": "me@me.com" }
-```
+{
+      "id": 1,
+      "username": "bigDaddyOG_37",
+      "password": "abc123",
+      "firstName": "Luis",
+      "lastName": "Chavez"
+    },```
 
 ### Messages
 
 ```json
-{ "id": 1, "userId": 1, "message": "What's up?" }
-```
+{
+      "id": 1,
+      "messages": "Sup Iron Man"
+    },
+    {
+      "messages": "Cant talk rn fighting thanos",
+      "id": 2
+    },```
 
 ### News
 
 ```json
-{
-    "id": 1,
-    "userId": 2,
-    "url": "https://www.quantamagazine.org/newfound-wormhole-allows-information-to-escape-black-holes-20171023/",
-    "title": "Wormholes Allow Information to Escape Black Holes",
-    "synopsis": "Check out this recent discovery about workholes"
-}
-```
+ {
+      "id": 1,
+      "synopsis": "After splitting with the Joker, Harley Quinn joins superheroes Black Canary, Huntress and Renee Montoya to save a young girl from an evil crime lord.",
+      "title": "New Harley Quinn Movie: Birds of Prey",
+      "timeStamp": "February 7, 2020",
+      "url": "https://www.imdb.com/title/tt7713068/"
+    },
 
 ### Friends
 
 ```json
-{ "id": 1, "userId": 1, "otherFriendId": 3 }
-```
+{
+      "id": 1,
+      "userId": "Hulk"
+    },
+    {
+      "id": 2,
+      "userId": "Black Widow"
+    }```
 
 ### Tasks
 
 ```json
-{ "id": 1, "userId": 3, "task": "Take out garbage" }
-```
+{
+      "id": 1,
+      "task": "Take Aunt Mae to get groceries before going on field trip to Europe. ",
+      "name": "Get Groceries ",
+      "exCompDate": "Feb 14, 2020"
+    }```
 
-## Professional Requirements
+How to run application
 
-1. Each module should have a comment at the top with the following info: author(s) and purpose of module
-1. The README for your project should include instructions on how another person can download and run the application
+1. https://github.com/nss-cohort-37/nutshell-nutty-nutria/blob/master/README.md
+2. clone down project
+3. navigate to nutti-nutshell-nutria, host http server
+4. navigate to database api, host json server on localhost:3000
 
-## How to Handle Authentication
-
-Be very clear that what you will be implemting is not real authentication. It is a simulation of it using very simplistic tools.
-
-You will be using session storage to keep track of which user has logged into Nutshell. When the user fills out the registration form, you will POST their username and password to the `users` collection in your API. You will then immediately take the `id` of the object in the response and save it to session storage.
-
-```js
-sessionStorage.setItem("activeUser", user.id)
-```
-
-If you want to add a Logout feature, all you need to do it remove the session storage item.
-
-```js
-sessionStorage.removeItem("activeUser")
-```
-
-## Visual Feature List
-
-To help you along, here is a visualization of a few features, as envisioned by one of your predecessors.
-
-![nutshell features](./Nutshell.png)

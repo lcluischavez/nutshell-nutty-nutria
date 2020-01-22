@@ -1,8 +1,8 @@
-main {
+/* main {
     display: none;
-}
+} */
 
-h1 {
+/* h1 {
     size: 70px;
     color: white;
     text-align: center;
@@ -11,13 +11,16 @@ h1 {
     background-position: center top; 
     background-size: cover;
     height: 250px;
-}
+} */
 
-.container{
+
+
+/* .container{
     display: flex;
-  }
+  } */
 
-.leftContainer {    
+
+/* .leftContainer {    
     margin-top: 40px;
     flex-basis: 25%;
     border: 1px solid black;
@@ -34,8 +37,124 @@ h1 {
     margin-top: 40px;
     flex-basis: 25%;
     border: 1px solid black;
-}
+} */
+
 
 .headings{
     justify-content: center;
+}
+
+
+
+
+/* body {
+    background-image:  url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQcxXFb02-WxbiAh1BgyskGfEtgWoRyp-EZ_ecH1dmFm74dx8Lj&s");
+    width: 100vw;
+    height: 100vh;
+    background-repeat:no-repeat;
+    background-size:cover;
+    background-position:bottom;
+} */
+
+/* https://farm9.staticflickr.com/8644/15964625458_d5c6d431ac_k.jpg */
+/* https://images.template.net/wp-content/uploads/2016/04/25114233/City-of-Delusion-HD-Background-Download.jpg */
+html {
+    background-image:  url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEUuRa5RXrJju8IdJYB6gsJuRXWhGvbtCKergrLJ5a-yJpxAi2&s");
+    width: 100vw;
+    height: 100vh;
+    background-repeat:no-repeat;
+    background-size:cover;
+    background-position:bottom;
+}
+
+body {
+    background-color: rgb(17, 17, 17, 0.8);
+    color: rgb(255, 255, 255);
+    border: thin;
+    height: 100%;
+}
+
+.container{
+    margin: 40px;
+    display: flex;
+    height: 70%;
+  }
+
+  h1 {
+      color: rgb(255, 210, 210);
+      font-family: sans-serif;
+      text-align: center;
+  }
+
+  .loginPage {
+    text-align: center;
+  }
+  
+  .leftContainer {    
+    flex-basis: 25%;
+    /* border: 1px solid black; */
+}
+
+.centerContainer{
+    display: flex;
+    flex-basis: 50%;
+    flex-wrap: wrap;
+    border: 1px solid black;
+}
+
+.rightContainer {    
+    flex-basis: 25%;
+    /* border: 1px solid black; */
+}
+
+.articles {
+    /* height: 50%; */
+}
+.events {
+    border: 1px solid black;
+    height: 50%;
+}
+.tasks {
+    border: 1px solid black;
+    height: 50%;
+}
+.messages {
+    border: 1px solid black;
+    height: 50%;
+}
+.friends {
+    border: 1px solid black;
+    height: 50%;
+}
+
+.headings {
+    text-align: center;
+    color: rgb(255, 162, 162);
+}
+
+.messageFormContainer {
+    text-align: center;
+}
+
+.taskFormContainer {
+    text-align: center;
+}
+
+.friendFormContainer {
+    text-align: center;
+}
+
+.eventFormContainer {
+    text-align: center;
+}
+.articleFormContainer {
+    margin: 50px;
+}
+main {
+    background-color: rgba(17, 17, 17, 0.801);
+    color: rgb(255, 255, 255);
+}
+
+#saveFriend {
+  
 }
