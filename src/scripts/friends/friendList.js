@@ -58,7 +58,6 @@ const FriendListComponent = () => {
                         <br>
                         <div>${individualFriend.userId}</div>
                         <br>
-                        <div>${individualFriend.InitiatedId}</div>
                         <button id="deleteFriend--${individualFriend.id}">Delete</button>
                         <br>
                     </section>
