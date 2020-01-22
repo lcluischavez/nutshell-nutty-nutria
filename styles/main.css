@@ -7,7 +7,7 @@
   }
   #container {
     display: none;
-    min-height: calc(100vh - 40vh);
+    min-height: calc(500vh - 40vh);
   }
  #container > #articles {
     flex: 1;

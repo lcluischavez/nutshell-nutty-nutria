@@ -1,8 +1,8 @@
 import { saveArticle, getArticles, useArticles, editArticle } from "./ArticleProvider.js"
 
 const eventHub = document.querySelector(".container")
-const contentTarget = document.querySelector(".articleFormContainer")
 
+const contentTarget = document.querySelector(".articleFormContainer")
 
 const ArticleFormComponent = () => {
 
@@ -16,14 +16,11 @@ const ArticleFormComponent = () => {
                 return currentArticleObject.id === parseInt(articleToBeEdited, 10)
             }
         )
-
         document.querySelector("#article-id").value = theFoundedArticle.id
         document.querySelector("#article-synopsis").value = theFoundedArticle.synopsis
         document.querySelector("#article-title").value = theFoundedArticle.title
         document.querySelector("#article-timeStamp").value = theFoundedArticle.timeStamp
         document.querySelector("#article-url").value = theFoundedArticle.url
-
-
     })
 
     // Handle internal element click
@@ -31,7 +28,6 @@ const ArticleFormComponent = () => {
         if (clickEvent.target.id === "saveArticle") {
             // Does the hidden input field have a value?
             const hiddenInputValue = document.querySelector("#article-id").value
-
             // If so, edit the note with a PUT operation
             if (hiddenInputValue !== "") {
                 const editedArticle = {
@@ -40,9 +36,8 @@ const ArticleFormComponent = () => {
                     title: document.querySelector("#article-title").value,
                     timeStamp: document.querySelector("#article-timeStamp").value,
                     url: document.querySelector("#article-url").value,
-
                 }
-
+                
                 editArticle(editedArticle).then(() => {
                     eventHub.dispatchEvent(new CustomEvent("articleHasBeenEdited"))
                 })
@@ -53,9 +48,7 @@ const ArticleFormComponent = () => {
                     title: document.querySelector("#article-title").value,
                     timeStamp: document.querySelector("#article-timeStamp").value,
                     url: document.querySelector("#article-url").value,
-
                 }
-
                 saveArticle(newArticle).then(
                     () => {
                         const message = new CustomEvent("articleCreated")
@@ -65,14 +58,12 @@ const ArticleFormComponent = () => {
             }
         }
     })
-
     eventHub.addEventListener("click", clickEvent => {
         if (clickEvent.target.id === "showArticles") {
             const message = new CustomEvent("showArticleButtonClicked")
             eventHub.dispatchEvent(message)
         }
     })
-
     const render = () => {
         contentTarget.innerHTML = `
             <details>
@@ -95,8 +86,6 @@ const ArticleFormComponent = () => {
             </details>
         `
     }
-
     render()
 }
-
 export default ArticleFormComponent

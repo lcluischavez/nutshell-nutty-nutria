@@ -54,7 +54,6 @@ const eventListComponent = () => {
             (individualEvent) => {
                 return `
                     <section class="event">
-                        <div>${individualEvent.id}</div>
                         <div>${individualEvent.name}</div>
                         <div>${individualEvent.location}</div>
                         <div>
